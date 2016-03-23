@@ -8,7 +8,7 @@ const mongoose = require('mongoose')
 const app = express()
 
 //DB Setup
-mongoose.connect('mongodb://localhost:auth/staff')
+mongoose.connect('mongodb://localhost/auth')
 
 //App Setup
 app.use(morgan('combined'))
