@@ -1,0 +1,22 @@
+{
+  "name": "api_system",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "staff":"nodemon app_staff.js",
+    "graphics":"nodemon app_graphics.js",
+    "dev":"nodemon index.js"
+  },
+  "keywords": [],
+  "author": "UtibeAbasi",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "*",
+    "express": "*",
+    "mongoose": "*",
+    "nodemon":"*",
+    "morgan":"*"
+  }
+}
