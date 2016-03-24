@@ -1,7 +1,13 @@
 const Staff = require('../models/staff')
+const config = require('../config')
+const jwt = require('jwt-simple')
+
+function tokenForStaff(staff){
+	const timestamp = new Date().getTime()
+	return jwt.encode({sub:staff.username,iat:timestamp},config.secret)
+}
 
 exports.signup = function(request,response,next){
-
 	const name = request.body.name
 	const imgUrl = request.body.imgUrl
 	const username = request.body.username
@@ -29,17 +35,8 @@ exports.signup = function(request,response,next){
 			if (err){return next(err)}
 
 			//Respond to request indicating that the user has been added to the staff table
-			response.json(staff)
+			response.json({token:tokenForStaff(staff)})
 		})
-
-		
-		
 	})
-
-	
-	
-	
-
-	
 	
 }
