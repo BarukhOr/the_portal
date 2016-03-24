@@ -7,6 +7,13 @@ function tokenForStaff(staff){
 	return jwt.encode({sub:staff.username,iat:timestamp,job:staff.job},config.secret)
 }
 
+export signIn = function(request,response,next){
+	//User has already had their email and password verified,
+	//We just need to give them a token
+	//Note User information has been supplied by passports done "functionality"
+	response.send({token:tokenForStaff(request:username)})
+}
+
 exports.signup = function(request,response,next){
 	const name = request.body.name
 	const imgUrl = request.body.imgUrl
@@ -40,3 +47,4 @@ exports.signup = function(request,response,next){
 	})
 	
 }
+
