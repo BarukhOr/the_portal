@@ -4,7 +4,7 @@ const jwt = require('jwt-simple')
 
 function tokenForStaff(staff){
 	const timestamp = new Date().getTime()
-	return jwt.encode({sub:staff.username,iat:timestamp},config.secret)
+	return jwt.encode({sub:staff.username,iat:timestamp,job:staff.job},config.secret)
 }
 
 exports.signup = function(request,response,next){
