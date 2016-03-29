@@ -6,7 +6,6 @@ const bcrypt = require('bcrypt-nodejs')
 var staffSchema = new Schema({
 	name:{
 		type:String,
-		required:[true,'missing a name']
 	},
 	imgUrl:{
 		type:String
@@ -16,16 +15,13 @@ var staffSchema = new Schema({
 		unique:true,
 		lowercase:true,
 		min:[3,'User Name is too small'],
-		required:[true,'missing a username']
 	},
 	job:{
 		type:[Number],
 		min:[1,'You need at least 1 job'],
-		required:[true,'Need to list a job']
 	},
 	password:{
 		type:String,
-		required:[true,'No password provided']
 	}
 },{collection:'staff'}); //override default collection name
 
