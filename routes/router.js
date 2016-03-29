@@ -3,7 +3,7 @@ const passportService = require('../services/passport')
 const passport = require('passport')
 
 const requireAuth = passport.authenticate('jwt',{session:false})
-const requreSignin = passport.authenticate('local',{session:false})
+const requireSignin = passport.authenticate('local',{session:false})
 
 
 module.exports = function(app){
@@ -11,9 +11,10 @@ module.exports = function(app){
 		response.send({hi:"Greetings mortal."})
 	})
 
-	app.post('/signup', Authentication.signup)
+	// app.post('/signup', Authentication.signup)
 	
-	app.post('/signin',requreSignin,Authentication.sigin)
+	app.post('/signin',requireSignin,Authentication.signIn)
+	// app.post('/signin',requireSignin)
 
 
 	app.get('/',function(request,response,next){

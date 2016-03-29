@@ -9,33 +9,40 @@ const LocalStrategy = require('passport-local')
 
 
 //Create local Strategy
-const localLogin = new LocalStrategy({},function(username,password,done){
+const localLogin = new LocalStrategy(function(username,password,done){
+	// console.log("Just a preliminary console log");
+	
+	// usernameAndDomain += '@southernct.edu'
 	const localConfig = {
-		url:'ldap://scsu.southernct.edu',
 		baseDN:'dc=scsu,dc=southern,dc=edu',
-		username:username.'@southernct.edu',
+		url:'ldap://scsu.southernct.edu',
+		username:username+"@southernct.edu",
 		password:password
 	}
-
 	
-	const ad = new ActiveDirectory(config)
+	// console.log("username: ",localConfig.username)
+	// console.log("url",localConfig.url)
+	var ad = new ActiveDirectory(localConfig)
+	// console.log(ad)
 	ad.authenticate(localConfig.username,localConfig.password,function(err,auth){
-		if(err){return done(err)}
-		if(!auth){return done(null,false)}
-		//Verify SCSU credentials
-		if(auth){
-			console.log('1st step accomplished')
-			//Verify that user is part of reslife staff
-			User.findOne({username:username},function(err,user){
-				if(err){return done(err)}
-				if(!user){return done(null,false)}
-
-				//if a user is found in the staff database with this username then return that staff member's information
-				return done(null,user)
+		if (err) {return done(err)}
+		if (auth){
+			Staff.findOne({username:username},function(err,staff){
+				if (err) {return done(err)}
+				if (staff){
+					return done(null,staff)
+				}else{
+					console.log("user is a student, but is not a staff")
+					return done(null,false)
+				}
 			})
+		}else{
+			console.log("Authentication Failed")
+			return done(null,false)
 		}
-		
+
 	})
+	// return done(null,false)
 })
 
 // Setup options for JWWT strategy
