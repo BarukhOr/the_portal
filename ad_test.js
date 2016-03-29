@@ -1,13 +1,15 @@
 var ActiveDirectory = require('activedirectory');
 
 var secret = require('./config')
-var username = 'udookonu1@southernct.edu';
+var username = secret.username;
 var password = secret.password;
 
-var config = { url: 'ldap://scsu.southernct.edu',
-               baseDN: 'dc=scsu,dc=southern,dc=edu',
-               username: username,
-               password: password }
+var config = { 
+
+  baseDN: 'dc=scsu,dc=southern,dc=edu',
+  url: 'ldap://scsu.southernct.edu/dc=scsu,dc=southern,dc=edu',
+  username: username,
+  password: password }
 
 var ad = new ActiveDirectory(config);
 
