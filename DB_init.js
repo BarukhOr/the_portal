@@ -17,7 +17,10 @@ db.staff.insert(
 		{'name' : 'Ziteri Beteri','imgUrl' : 'build/css/images/user3.jpg',username:'beteriz1','password':'12345!','job':[3]},
 		{'name' : 'Tereere Absoute','imgUrl' : 'build/css/images/user4.jpg',username:'absoutet1','password':'12345!','job':[1,2]},
 		{'name' : 'Megazoid Piza','imgUrl' : 'build/css/images/user7.jpg',username:'pizam1','password':'12345!','job':[1,2]},
-		{'name' : 'Mark Newton','imgUrl' : 'build/css/images/user8.jpg',username:'newtonm1','password':'12345!','job':[1,2]}
+		{'name' : 'Mark Newton','imgUrl' : 'build/css/images/user8.jpg',username:'newtonm1','password':'12345!','job':[1,2]},
+		{'name' : 'UtibeAbasi Udo-Okon','imgUrl' : 'build/css/images/user3.jpg',username:'udookonu1','password':'12345!','job':[1,2]},
+		{'name' : 'Nicholas Brenckle','imgUrl' : 'build/css/images/user8.jpg',username:'brencklen1','password':'12345!','job':[1,2]},
+		{'name' : 'Kyle Stratoudakis','imgUrl' : 'build/css/images/user8.jpg',username:'stratoudakk1','password':'12345!','job':[1,2]}
 	]
 )
 
