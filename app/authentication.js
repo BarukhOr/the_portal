@@ -1,4 +1,4 @@
-const Staff = require('../models/staff')
+const Staff = require('./staff')
 const config = require('../config')
 const jwt = require('jwt-simple')
 
