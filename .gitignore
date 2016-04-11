@@ -3,7 +3,14 @@ logs
 *.log
 npm-debug.log*
 
+# NPM Module data
+/node_modules
+
+# Image upload testing folder
 /app/attachedImages/*
+
+# Build directory
+/dist
 
 # Runtime data
 pids

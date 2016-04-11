@@ -8,9 +8,9 @@ var mui = require('material-ui');
 	DropDownMenu 	= mui.DropDownMenu,
 	MenuItem 		= mui.MenuItem,
 	Divider 		= mui.Divider,
-	FloatingActionButton = mui.FloatingActionButton,
+	FloatingActionButton = mui.FloatingActionButton;
 	
-console.log(mui);
+//console.log(mui);
 
 const style = {
   padding: 20,
@@ -70,7 +70,7 @@ module.exports = React.createClass({
 		return(
 			<div className="form-group">
 				<TextField floatingLabelText="Description"  hintText="Carefully describe your design." rows={5} />
-				<div />
+				<br />
 			</div>
 		);
 	},
@@ -81,8 +81,8 @@ module.exports = React.createClass({
 		};
 		return (
 			<div className="form-group">
-				<FloatingActionButton mini={true} style={style} >
-					{/* Icon Needed */}
+				<FloatingActionButton mini={true} style={style} onClick={this.onOpenClick}>
+					{/* Icon Goes Here */}
 				</FloatingActionButton>
 
     			<TextField hintText="Add Image (click or drag)">
