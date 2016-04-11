@@ -31,32 +31,4 @@ module.exports = function(app){
 		    });
 		});
 	})
-
-	// app.get('/',function(request,response,next){
-	// 	response.send(
-	// 		"<div>\
- //        		<h3>Upload File</h3>\
- //        		<form action='/' method='post' enctype='multipart/form-data'>\
- //        			<input type='file' id='uploadFiles' multiple='multiple' />\
- //        			<br />\
- //        			<button type='submit'>Submit</button>\
- //        		</form>\
- //    		</div>"
-	// 	)
-	// })
-
-	// app.post('/', function(req, res) {
-	// 	console.log("Starting")
-	//     var fstream;
-	//     req.pipe(req.busboy);
-	//     req.busboy.on('file', function (fieldname, file, filename) {
-	//         console.log("Uploading: " + filename); 
-	//         fstream = fs.createWriteStream(__dirname + '/files/' + filename);
-	//         file.pipe(fstream);
-	//         fstream.on('close', function () {
-	//             res.redirect('back');
-	//         });
-	//     });
-	//     res.status(200).end();
-	// });
 }
