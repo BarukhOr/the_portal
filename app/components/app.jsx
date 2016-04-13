@@ -1,14 +1,13 @@
 var React = require("react");
 var createFragment = require("react-addons-create-fragment");
-var Graphics = require("./Graphics.jsx")
-var Programs = require("./Programs.jsx")
-var Council = require("./Council.jsx")
+var Graphics = require("./Graphics.jsx");
+var Programs = require("./Programs.jsx");
+var Council = require("./Council.jsx");
 var Colors = require("material-ui/lib/styles/colors");
 var JobCard = require("./JobCard.jsx");
+var JobDash = require("./JobDash.jsx");
 var mui = require("material-ui");
 	AppBar = mui.AppBar;
-
-console.log("Appbar", mui);
 
 module.exports = React.createClass({
 	componentWillMount: function () {
@@ -23,10 +22,11 @@ module.exports = React.createClass({
 				createFragment(
 					{programs: 
 						<JobCard 
-							title="Programs"
+							title="Resident Advisor Programs"
 							subtitle="Create and manage RA Programs"
 							color={Colors.deepPurple500}
 							access={access.programs} 
+							onTouchTap={console.log("Component Clicked!")}
 						/>
 					}
 				)
@@ -63,6 +63,14 @@ module.exports = React.createClass({
 			);
 		}
 
+		components.push(
+			createFragment(
+				{council: 
+					<JobDash />
+				}
+			)
+		);
+
 		this.setState({components: components});
 	},
 
@@ -72,16 +80,21 @@ module.exports = React.createClass({
 				<AppBar title="Home" style={{background: Colors.blue500}} />
 				<br />
 				<div className="container">
-					{this.state.components[0]}
+					{this.state.components[3]}
+					{/*
+					<div className="container-fluid">
+						{this.state.components[0]}
+					</div>
 					<br />
 					
-					<div className="container col-sm-6">
+					<div className="container-fluid col-sm-6">
 						{this.state.components[1]}
 					</div>
 
-					<div className="container col-sm-6">
+					<div className="container-fluid col-sm-6">
 						{this.state.components[2]}
 					</div>
+					*/}
 				</div>
 			</div>
 		)
