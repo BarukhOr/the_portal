@@ -1,7 +1,8 @@
 var React = require("react");
-var Upload = require("./FileUpload.jsx");
 var Colors = require("material-ui/lib/styles/colors");
 var AddIcon = require("material-ui/lib/svg-icons/content/add");
+var router = require('react-router'),
+	Link = router.Link;
 var mui = require("material-ui"),
 	Card = mui.Card,
 	CardActions = mui.CardActions,
@@ -12,10 +13,6 @@ var mui = require("material-ui"),
 	Flatbutton = mui.Flatbutton;
 
 module.exports = React.createClass({
-	click: function (e) {
-		console.log("FlatButton Click", e);
-	},
-
 	render: function () {
 		const color = {
 			background: this.props.color,
@@ -33,9 +30,9 @@ module.exports = React.createClass({
 					</Paper>
 
 					<CardActions>
-						<FlatButton label="Create Request" onTouchTap={this.click}/>
-						<FlatButton label="View Pending " onTouchTap={this.click}/>
-						<FlatButton label="Update Pending" onTouchTap={this.click}/>
+						<Link to="/Graphics/New"><FlatButton label="Create Request" /></Link>
+						<Link to="/Graphics"><FlatButton label="View Pending " /></Link>
+						<FlatButton label="Update Pending" />
 					</CardActions>
 				</Card>
 			</div>

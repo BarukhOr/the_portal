@@ -9,8 +9,6 @@ var mui = require('material-ui');
 	MenuItem 		= mui.MenuItem,
 	Divider 		= mui.Divider,
 	FloatingActionButton = mui.FloatingActionButton;
-	
-//console.log(mui);
 
 const style = {
   padding: 20,
@@ -38,17 +36,14 @@ module.exports = React.createClass({
 	},
 
 	handleType: function (event, index, value) {
-		console.log(this.state);
 		this.setState({value: value});
 	},
 
 	handleOrientation: function (event, index, value) {
-		console.log(this.state);
 		this.setState({orientation: value});
 	},
 
 	onOpenClick: function () {
-		console.log("onOpenClick");
 		this.refs.dropZone.open();
 	},
 
@@ -142,7 +137,7 @@ module.exports = React.createClass({
 
     render:function () {
         return(
-        	<div className="mdl-layout-spacer">
+        	<div className="container">
         		<Paper style={style} zDepth={2}>
 	        		<form action='/' method='POST'>
 		        		<div className="form-group">

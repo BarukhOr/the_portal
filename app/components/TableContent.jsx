@@ -1,5 +1,4 @@
 var React = require("react");
-var createFragment = require("react-addons-create-fragment");
 var mui = require("material-ui"),
 	Table = mui.Table,
 	TableHeaderColumn = mui.TableHeaderColumn,

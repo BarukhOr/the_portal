@@ -1,5 +1,4 @@
 var React = require("react");
-var Upload = require("./FileUpload.jsx");
 var createFragment = require("react-addons-create-fragment");
 var Colors = require("material-ui/lib/styles/colors");
 var ContentAdd = require("material-ui/lib/svg-icons/content/add");
@@ -13,24 +12,12 @@ var mui = require("material-ui"),
 	CardTitle = mui.CardTitle,
 	CardText = mui.CardText,
 	Flatbutton = mui.Flatbutton,
-	Table = mui.Table,
-	TableHeaderColumn = mui.TableHeaderColumn,
-	TableRow = mui.TableRow,
-	TableHeader = mui.TableHeader,
-	TableRowColumn = mui.TableRowColumn,
-	TableBody = mui.TableBody,
 	FontIcon = mui.FontIcon;
-
-console.log(ContentAdd);
 
 module.exports = React.createClass({
 	componentWillMount: function() {
-		// request
-		// 	.get("http://10.64.26.131:4000/api/graphics/print/get/all/")
-		// 	.withCredentials()
-		// 	.end(function(err, res) {
-		// 		console.log(res);
-		// 	})
+		var recolorEvent = new CustomEvent("recolor", { 'detail': {background: Colors.green200} });
+		window.dispatchEvent(recolorEvent);
 	},
 
 	click: function (e) {
