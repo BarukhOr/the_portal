@@ -4,20 +4,20 @@ var AddIcon = require("material-ui/lib/svg-icons/content/add");
 var router = require('react-router'),
 	Link = router.Link;
 var mui = require("material-ui"),
-	Card = mui.Card,
-	CardActions = mui.CardActions,
-	CardHeader = mui.CardHeader,
-	CardMedia = mui.CardMedia,
-	CardTitle = mui.CardTitle,
-	CardText = mui.CardText,
-	Flatbutton = mui.Flatbutton;
+	Card		= mui.Card,
+	CardActions	= mui.CardActions,
+	CardHeader	= mui.CardHeader,
+	CardMedia	= mui.CardMedia,
+	CardTitle	= mui.CardTitle,
+	CardText	= mui.CardText,
+	Flatbutton	= mui.Flatbutton,
+	FontIcon	= mui.FontIcon;
 
 module.exports = React.createClass({
 	render: function () {
 		const color = {
 			background: this.props.color,
 		};
-		//var subTitle = if(this.props.subtitle ? this.props.subtitle : "");
 
 		return (
 			<div>
@@ -30,9 +30,8 @@ module.exports = React.createClass({
 					</Paper>
 
 					<CardActions>
-						<Link to="/Graphics/New"><FlatButton label="Create Request" /></Link>
-						<Link to="/Graphics"><FlatButton label="View Pending " /></Link>
-						<FlatButton label="Update Pending" />
+						<Link to="/Graphics/New"><FlatButton label="Create Request" icon={<FontIcon className="material-icons">add</FontIcon>} /></Link>
+						<Link to="/Graphics"><FlatButton label="View Pending " icon={<FontIcon className="material-icons">list</FontIcon>} /></Link>
 					</CardActions>
 				</Card>
 			</div>

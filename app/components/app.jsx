@@ -5,6 +5,7 @@ var JobCard = require("./JobCard.jsx");
 
 module.exports = React.createClass({
 	componentWillMount: function () {
+		this.props.appColor("Home", {background: Colors.blue500})
 		this.defineComponents(this.props.auth);
 	},
 
@@ -75,7 +76,6 @@ module.exports = React.createClass({
 					<div className="container-fluid col-sm-6">
 						{this.state.components[2]}
 					</div>
-					
 				</div>
 			</div>
 		)

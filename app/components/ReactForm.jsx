@@ -1,6 +1,7 @@
 var React = require("react");
 var Dropzone = require('react-dropzone');
 var request = require('SuperAgent');
+var Colors = require("material-ui/lib/styles/colors");
 var mui = require('material-ui');
 	Paper 			= mui.Paper,
 	TextField 		= mui.TextField,
@@ -8,6 +9,10 @@ var mui = require('material-ui');
 	DropDownMenu 	= mui.DropDownMenu,
 	MenuItem 		= mui.MenuItem,
 	Divider 		= mui.Divider,
+	FontIcon		= mui.FontIcon,
+	List 			= mui.List,
+	ListItem 		= mui.ListItem,
+	FlatButton		= mui.FlatButton,
 	FloatingActionButton = mui.FloatingActionButton;
 
 const style = {
@@ -16,23 +21,34 @@ const style = {
   textAlign: 'center',
   display: 'inline-block',
 };
- 
 
 module.exports = React.createClass({
+	componentWillMount: function() {
+		this.props.appColor("Graphics", {background: Colors.teal500})
+	},
+
 	getInitialState: function () {
 		return {
 			value: 1,
-			orientation: 1
+			orientation: 1,
+			nameError: null,
+			phoneError: null,
+			quantityError: null,
+			size: null,
+			heightError: null,
+			widthHeight: null,
+			description: null,
+			files: []
 		}
 	},
 
 	onDrop: function (files) {
-	  console.log('Received files: ', files);
-	  var req = request.post('/upload');
+	  // console.log('Received files: ', files);
+	  stateFiles = this.state.files
 	  files.forEach((file)=> {
-	      req.attach(file.name, file);
+		  stateFiles.push({fileName: file.name, file: file})
 	  });
-	  req.end();
+	  this.setState({files: stateFiles})
 	},
 
 	handleType: function (event, index, value) {
@@ -47,10 +63,77 @@ module.exports = React.createClass({
 		this.refs.dropZone.open();
 	},
 
+	handleInput: function(e, val) {
+		// console.log(e)
+		// console.log(e.nativeEvent)
+		// console.log(this.refs.name.props.errorText)
+	},
+
+	onSubmit: function (value) {
+		var formRequest = request.post("/form")
+		var valid = true;
+
+		if(this.refs.name.getValue() )
+		
+		var name = this.refs.name.getValue()
+		if(name){
+			formRequest.field("name", name)
+			this.setState({nameError: null})
+		}
+		else {
+			valid = false;
+			this.setState({nameError: "This field is required"})
+		}
+		
+		var phone = this.refs.phone.getValue()
+		if(phone){
+			formRequest.field("phone", phone)
+			this.setState({phoneError: null})
+		}
+		else {
+			valid = false;
+			this.setState({phoneError: "This field is required"})
+		}
+		
+		var description = this.refs.description.getValue()
+		if(description){
+			formRequest.field("description", description)
+			this.setState({descriptionError: null})
+		}
+		else {
+			valid = false;
+			this.setState({descriptionError: "This field is required"})
+		}
+
+		if(value == 1) {
+			formRequest.field("orientation", this.refs.orientation.getValue())
+			formRequest.field("quantity", this.refs.quantity.getValue())
+		}
+		else if(value == 2) {
+			formRequest.field("height", this.refs.height.getValue())
+			formRequest.field("width", this.refs.width.getValue())
+		}
+		else if(value == 3) {
+			formRequest.field("size", this.refs.size.getValue())
+		}
+
+		if(valid) {
+			var upload = request.post("/upload")
+			this.state.files.forEach((element)=> {
+				// console.log(file)
+				upload.attach(element.fileName, element.file);
+			});
+
+			upload.end()
+			formRequest.end()
+			console.log("form submitted")
+		}
+	},
+
 	typeMenu: function () {
 		return(
 			<div className="form-group">
-				<DropDownMenu value={this.state.value} onChange={this.handleType}>
+				<DropDownMenu ref="type" value={this.state.value} onChange={this.handleType}>
 				  <MenuItem value={1} primaryText="Flyer"/>
 				  <MenuItem value={2} primaryText="RA Board"/>
 				  <MenuItem value={3} primaryText="TV Display"/>
@@ -64,7 +147,13 @@ module.exports = React.createClass({
 	renderDescription: function () {
 		return(
 			<div className="form-group">
-				<TextField floatingLabelText="Description"  hintText="Carefully describe your design." rows={5} />
+				<TextField
+					ref="description"
+					floatingLabelText="Description"
+					hintText="Carefully describe your design."
+					errorText={this.state.descriptionError}
+					rows={5}
+				/>
 				<br />
 			</div>
 		);
@@ -77,12 +166,12 @@ module.exports = React.createClass({
 		return (
 			<div className="form-group">
 				<FloatingActionButton mini={true} style={style} onClick={this.onOpenClick}>
-					{/* Icon Goes Here */}
+					<FontIcon className="material-icons">add</FontIcon>
 				</FloatingActionButton>
 
-    			<TextField hintText="Add Image (click or drag)">
-        			<Dropzone ref="dropZone" accept="image/*" onDrop={this.onDrop} />
-    			</TextField>
+				<TextField hintText="Add Image (click or drag)">
+					<Dropzone ref="dropZone" accept="image/*" onDrop={this.onDrop} />
+				</TextField>
 			</div>
 		);
 	},
@@ -92,14 +181,18 @@ module.exports = React.createClass({
 			return(
 				<div>
 					{this.typeMenu()}
-					<DropDownMenu value={this.state.orientation} onChange={this.handleOrientation}>
+					<DropDownMenu ref="orientation" value={this.state.orientation} onChange={this.handleOrientation}>
 					  <MenuItem value={1} primaryText="Portrait" />
 					  <MenuItem value={2} primaryText="Landscape" />
 					</DropDownMenu>
 					<br />
-					<TextField floatingLabelText="Quantity" hintText="Number of copies to be printed" />
-		        	<br />
-		        	{this.renderDescription()}
+					<TextField
+						floatingLabelText="Quantity"
+						hintText="Number of copies to be printed"
+						errorText={this.state.quantityError}
+					/>
+					<br />
+					{this.renderDescription()}
 				</div>
 			);
 		}
@@ -107,11 +200,21 @@ module.exports = React.createClass({
 			return(
 				<div>
 					{this.typeMenu()}
-					<TextField floatingLabelText="Height" hintText="Enter vertical dimension"/>
+					<TextField
+						ref="height"
+						floatingLabelText="Height"
+						hintText="Enter vertical dimension"
+						errorText={this.state.heightError}
+					/>
 					<br />
-		        	<TextField floatingLabelText="Width" hintText="Enter horizontal dimension"/>
-		        	<br />
-		        	{this.renderDescription()}
+					<TextField
+						ref="width"
+						floatingLabelText="Width"
+						hintText="Enter horizontal dimension"
+						errorText={this.state.widthError}
+					/>
+					<br />
+					{this.renderDescription()}
 				</div>
 			);
 		}
@@ -119,7 +222,12 @@ module.exports = React.createClass({
 			return(
 				<div>
 					{this.typeMenu()}
-					<TextField floatingLabelText="Size" hintText="ex. 1920x1080 or 32in"/>
+					<TextField
+						ref="size"
+						floatingLabelText="Size"
+						hintText="ex. 1920x1080 or 32in"
+						errorText={this.state.sizeError}
+					/>
 					<br />
 					{this.renderDescription()}
 				</div>
@@ -135,25 +243,54 @@ module.exports = React.createClass({
 		}
 	},
 
-    render:function () {
-        return(
-        	<div className="container">
-        		<Paper style={style} zDepth={2}>
-	        		<form action='/' method='POST'>
-		        		<div className="form-group">
-		        			<TextField floatingLabelText="Name" hintText="Enter Requestors name"/>
-		        			<br />
+	render:function () {
+		return(
+			<div className="container">
+				<Paper style={style} zDepth={2}>
+					<form action='/' method='POST'>
+						<div className="form-group">
+							<TextField 
+								ref="name"
+								floatingLabelText="Name"
+								hintText="Enter Requestors name"
+								errorText={this.state.nameError}
+								onChange={this.handleInput}
+							/>
+							<br />
 
-		        			<TextField floatingLabelText="Phone" hintText="Enter contact phone number"/>
-		        			<br />
-		        		</div>
-		        		<Divider />
+							<TextField
+								ref="phone"
+								floatingLabelText="Phone"
+								hintText="Enter contact phone number"
+								errorText={this.state.phoneError}
+							/>
+							<br />
+						</div>
+						<Divider />
 
-	        			{this.reactForm(this.state.value)}
-	        			{this.renderFileUpload()}
-	        		</form>
+						{this.reactForm(this.state.value)}
+						
+						<List>
+							{
+								this.state.files.map(function(file, i){
+									console.log(file)
+									return(
+										<ListItem
+											key={i}
+											primaryText={file.fileName}
+											leftIcon={<FontIcon className="material-icons">attachment</FontIcon>}
+										/>
+									)
+								})
+							}
+						</List>
+
+						{this.renderFileUpload()}
+
+						<FlatButton label="submit" onTouchTap={this.onSubmit} />
+					</form>
 				</Paper>
-    		</div>
-    	)
-    }
+			</div>
+		)
+	}
 })

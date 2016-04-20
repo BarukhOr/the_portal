@@ -26,27 +26,25 @@ var MainLayout = React.createClass({
 		}
 	},
 
-	componentDidMount: function (){
-		var color;
-		window.addEventListener("recolor", function(e){
-			color = e.detail;
-			console.log(color)
+	setAppColor: function (title, color) {
+		this.setState({
+			title: title,
+			color: color
 		})
-		
-		// this.setState({color: color});
-	},
-
-	componentWillUnmount: function () {
-		window.removeEventListener("recolor");
 	},
 
 	render: function() {
 		return (
 			<div className="app">
-				<AppBar title={this.state.title} style={this.state.color} />
+				<nav className="navbar-fixed-top">
+					<AppBar title={this.state.title} style={this.state.color} />
+				</nav>
+				<br />
+				<br />
+				<br />
 				<br />
 				<main>
-					{this.props.children}
+					{React.cloneElement(this.props.children, { appColor: this.setAppColor })}
 				</main>
 			</div>
 		)
@@ -56,13 +54,13 @@ var MainLayout = React.createClass({
 
 var AppAuth = React.createClass({
 	render: function () {
-		return <App auth={access} />
+		return <App appColor={this.props.appColor} auth={access} />
 	}
 })
 
 var GraphicsForm = React.createClass({
 	render: function () {
-		return <ReactForm />
+		return <ReactForm appColor={this.props.appColor} />
 	}
 })
 

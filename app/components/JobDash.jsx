@@ -16,8 +16,7 @@ var mui = require("material-ui"),
 
 module.exports = React.createClass({
 	componentWillMount: function() {
-		var recolorEvent = new CustomEvent("recolor", { 'detail': {background: Colors.green200} });
-		window.dispatchEvent(recolorEvent);
+		this.props.appColor("Graphics", {background: Colors.amber500})
 	},
 
 	click: function (e) {
@@ -25,10 +24,6 @@ module.exports = React.createClass({
 	},
 
 	render: function () {
-		const color = {
-			background: this.props.color,
-		};
-
 		var Cards = {
 			0:{title: "Sort A", color: {background: Colors.red200}, action: {label: "Create New", method: this.click}},
 			1:{title: "Sort B", color: {background: Colors.blue200}, action: {label: "History", method: this.click}},
@@ -61,7 +56,7 @@ module.exports = React.createClass({
 						Object.keys(Cards).map(function(i){
 							return(
 								<div key={i} className="container-fluid col-sm-3">
-									<Card>
+									<Card key={i}>
 										<Paper zDepth={1}>
 											<CardTitle title={Cards[i].title} style={Cards[i].color} />
 											<CardMedia>

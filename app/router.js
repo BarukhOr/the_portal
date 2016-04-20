@@ -8,14 +8,14 @@ const requireAuth = passport.authenticate('jwt',{session:false})
 const requireSignin = passport.authenticate('local',{session:false})
 
 module.exports = function(app){
-
-	app.post('/signin', requireSignin, Authentication.signIn)
+	app.post('/form', function(req, res, next) {
+		console.log(req)
+	})
 
 	app.post('/upload', function(req, res, next){
 		console.log('Upload started');
 		var fstream;
 		req.pipe(req.busboy);
-		console.log('busboy');
 		req.busboy.on('file', function(fieldname, file, filename){
 		    console.log('uploading ' + filename);
 		    var dir = __dirname + '/attachedImages/';
@@ -26,7 +26,7 @@ module.exports = function(app){
 		    file.pipe(fstream);
 		    fstream.on('close', function(){
 		        // Upload Complete Event
-		        //res.redirect('back');
+		        res.status(303);
 		        console.log('Done ' + filename);
 		    });
 		});
