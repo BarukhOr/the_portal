@@ -23,10 +23,6 @@ const style = {
 };
 
 module.exports = React.createClass({
-	componentWillMount: function() {
-		this.props.appColor("Graphics", {background: Colors.teal500})
-	},
-
 	getInitialState: function () {
 		return {
 			value: 1,

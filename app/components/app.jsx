@@ -5,7 +5,7 @@ var JobCard = require("./JobCard.jsx");
 
 module.exports = React.createClass({
 	componentWillMount: function () {
-		this.props.appColor("Home", {background: Colors.blue500})
+		this.props.setAppbar("Home", {background: Colors.blue500})
 		this.defineComponents(this.props.auth);
 	},
 
@@ -19,7 +19,9 @@ module.exports = React.createClass({
 						<JobCard 
 							title="Resident Advisor Programs"
 							subtitle="Create and manage RA Programs"
+							path="/Programs"
 							color={Colors.deepPurple500}
+							height={30}
 							access={access.programs} 
 						/>
 					}
@@ -34,7 +36,9 @@ module.exports = React.createClass({
 						<JobCard 
 							title="Graphics"
 							subtitle="Create and manage Graphics Requests"
+							path="/Graphics"
 							color={Colors.teal500}
+							height={30}
 							access={access.programs} 
 						/>
 					}
@@ -49,7 +53,9 @@ module.exports = React.createClass({
 						<JobCard 
 							title="Hall Council"
 							subtitle="Create and manage Hall Council Programs"
+							path="/Council"
 							color={Colors.amber500}
+							height={30}
 							access={access.programs} 
 						/>
 					}
