@@ -12,7 +12,7 @@ import FlatButton from 'material-ui/lib/flat-button';
 import LeftNav from 'material-ui/lib/left-nav';
 import Paper from 'material-ui/lib/paper';
 
-import JobCard from './dash/jobs';
+import JobCard from './dash/jobcard';
 
 class MainLayout extends Component{
 	constructor(props) {

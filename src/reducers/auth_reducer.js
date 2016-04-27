@@ -1,4 +1,4 @@
-import {AUTH_USER, DEAUTH_USER, AUTH_ERROR} from '../actions/types'
+import {AUTH_USER, DEAUTH_USER, AUTH_ERROR} from '../actions/types';
 
 export default function(state={}, action){
 

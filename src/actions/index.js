@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
-import { AUTH_USER, AUTH_ERROR } from './types';
+import { AUTH_USER, AUTH_ERROR, GRAPHICS_PRINT_ALL } from './types';
 
 import * as PATHS from '../../config.js';
 
@@ -15,13 +15,12 @@ export function signinUser({username,password}){
 					dispatch({type:AUTH_USER});
 					//Save JWT token
 					localStorage.setItem('token',response.data.token);
-					//Redirect to the route '/features'
-					browserHistory.push('/feature');
+					//Redirect to the route '/dash'
+					browserHistory.push('/dash');
 			})
 			.catch(() => {
 					//if request is bad ...
 					//Show an error to the user
-					// console.log("error detected");
 					dispatch(authError('Bad Login information'));
 				})		
 	}
@@ -31,5 +30,15 @@ export function authError(error){
 	return{
 		type:AUTH_ERROR,
 		payload:error
+	}
+}
+
+export function getAllGraphics(){
+	const url = `${PATHS.API}${PATHS.GRAPHICS_PRINT_ALL}`;
+	const request = axios.get(url);
+
+	return{
+		type:GRAPHICS_PRINT_ALL,
+		payload:request
 	}
 }

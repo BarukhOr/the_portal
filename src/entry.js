@@ -11,8 +11,8 @@ import reducers from './reducers';
 
 import MainLayout from './components/main_layout';
 import Signin from './components/auth/signin';
-import Home from './components/home';
-import Graphics from './components/graphics/graphics';
+import Dash from './components/dash/index';
+import Graphics from './components/graphics/index';
 
 injectTapEventPlugin();
 
@@ -23,6 +23,7 @@ ReactDOM.render(
     <Router history={browserHistory}>
     	<Route path="/" component={MainLayout}>
     		<Route path="signin" component={Signin} />
+    		<Route path="dash" component={Dash} />
     		<Route path="graphics" component={Graphics} />
     	</Route>
     </Router>
