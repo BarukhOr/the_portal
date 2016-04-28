@@ -21,7 +21,9 @@ class Graphics extends Component{
 	render(){
 		return(
 			<div>
-				<Table header={this.state.headers} />
+				{console.log(this.props.data)}
+				<Table header={this.state.headers} data={this.props.graphics.graphics_print_all}/>
+				}
 			</div>
 		)
 	}
