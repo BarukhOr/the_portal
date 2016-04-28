@@ -37,8 +37,9 @@ export function getAllGraphics(){
 	const url = `${PATHS.API}${PATHS.GRAPHICS_PRINT_ALL}`;
 	const request = axios.get(url);
 
-	return{
-		type:GRAPHICS_PRINT_ALL,
-		payload:request
+	return(dispatch) => {
+		request.then(({data})=>{
+			dispatch({type:GRAPHICS_PRINT_ALL,payload:data})
+		})
 	}
 }

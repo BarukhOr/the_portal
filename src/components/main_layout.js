@@ -64,7 +64,7 @@ class MainLayout extends Component{
 				</nav>
 				<br /> <br /> <br /> <br />
 				<main>
-					{React.cloneElement(this.props.children, { setAppbar: this.setAppbar })}
+					{this.props.children}
 				</main>
 			</div>
 		)

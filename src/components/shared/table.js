@@ -8,30 +8,16 @@ import TableRowColumn from 'material-ui/lib/table/table-row-column';
 import TableBody from 'material-ui/lib/table/table-body';
 
 class DataTable extends Component{
-	renderHeader(headers){
-		return(
-			headers.map(function(obj,index){
-				return (
-					<TableHeaderColumn key={index} test={"boom"} >{obj}</TableHeaderColumn>
-				)
-			})
-		)
-	}
 
-	renderRows(data,headers){
-		return(
-			data.map(function(row,index){
-				return(
-					<TableRow key={index}>
-						{headers.map(function(element,index){
-							return(
-								<TableRowColumn key={index}>{row[element]}</TableRowColumn>
-							)
-						})}
-					</TableRow>
-				)
-			})
-		)
+
+	testSpace(data){
+
+		for(var eom in data){
+			var prata = JSON.stringify(data[eom])
+			console.log("prata",prata.name)
+			var rato = data[eom]
+			console.log("testing",rato.name)
+		}
 	}
 
 	render(){
@@ -39,15 +25,10 @@ class DataTable extends Component{
 			<div className="container-fluid">
 				Imagine a table~ ... Just Imagine it!~
 				<Table>
-					<TableHeader>
-						<TableRow>
-							{this.renderHeader(this.props.headers)}
-						</TableRow>
-					</TableHeader>
 					<TableBody>
-				      {this.renderRows(this.props.data,this.props.headers)}
-				    </TableBody>
-				</Table>				
+					  {this.testSpace(this.props.data,{name:'name'})}
+					</TableBody>
+				</Table>
 			</div>
 		)
 	}

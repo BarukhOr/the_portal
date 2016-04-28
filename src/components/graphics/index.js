@@ -9,31 +9,19 @@ class Graphics extends Component{
 	constructor(props) {
 	  super(props);
 	  this.state = {
-	  	headers:['Title','Name','Type','Priority','Status'],
-		data:[{Title: 'Delete Program', Name : 'Craig Bodden', Type : 'Other', Priority: 'High', Status : 'submitted'},
-			{Title: 'Found a bug', Name : 'Craig Bodden', Type : 'Other', Priority: 'High', Status : 'submitted'},
-			{Title: 'Page acting weird', Name : 'Craig Bodden', Type : 'Other', Priority: 'High', Status : 'submitted'},
-			{Title: 'Can\'t see requests', Name : 'Craig Bodden', Type : 'Other', Priority: 'High', Status : 'submitted'},
-			{Title: 'I dunno', Name : 'Craig Bodden', Type : 'Other', Priority: 'High', Status : 'submitted'},
-			{Title: 'Delete Program', Name : 'Craig Bodden', Type : 'Other', Priority: 'High', Status : 'submitted'},
-			{Title: 'Found a bug', Name : 'Craig Bodden', Type : 'Other', Priority: 'High', Status : 'submitted'},
-			{Title: 'Page acting weird', Name : 'Craig Bodden', Type : 'Other', Priority: 'High', Status : 'submitted'},
-			{Title: 'Can\'t see requests', Name : 'Craig Bodden', Type : 'Other', Priority: 'High', Status : 'submitted'},
-			{Title: 'I dunno', Name : 'Craig Bodden', Type : 'Other', Priority: 'High', Status : 'submitted'},
-			{Title: 'Delete Program', Name : 'Craig Bodden', Type : 'Other', Priority: 'High', Status : 'submitted'},
-			{Title: 'Found a bug', Name : 'Craig Bodden', Type : 'Other', Priority: 'High', Status : 'submitted'},
-			{Title: 'Page acting weird', Name : 'Craig Bodden', Type : 'Other', Priority: 'High', Status : 'submitted'},
-			{Title: 'Can\'t see requests', Name : 'Craig Bodden', Type : 'Other', Priority: 'High', Status : 'submitted'},
-			{Title: 'I dunno', Name : 'Craig Bodden', Type : 'Other', Priority: 'High', Status : 'submitted'}]
+	  	headers:{title:'Event_Title',name:'name',dimensions:'dimensions',status:'status',assigned_to:'assigned_to'},
 	  }
+
+	}
+
+	componentWillMount(){
+		this.props.getAllGraphics();
 	}
 
 	render(){
 		return(
 			<div>
-				hello
-				{this.props.getAllGraphics()}
-				<Table headers={this.state.headers} data={this.state.data}/>
+				<Table header={this.state.headers} />
 			</div>
 		)
 	}
