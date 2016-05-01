@@ -9,7 +9,7 @@ class Graphics extends Component{
 	constructor(props) {
 	  super(props);
 	  this.state = {
-	  	headers:{title:'Event_Title',name:'name',dimensions:'dimensions',status:'status',assigned_to:'assigned_to'},
+	  	headers:{title:'Event_Title',name:'name',dimensions:'dimensions',status:'status'}
 	  }
 
 	}

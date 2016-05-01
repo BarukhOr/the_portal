@@ -24,17 +24,16 @@ class DataTable extends Component{
 		)
 	}
 
-	renderBody(header,data){
+	renderBody(param_header,data){
 		return(
 			<TableBody>
 				{data.map(function(element) {
 					return(
 						<TableRow>
-							{Object.keys(header).map(function(value, index) {
-								const testheader = header[value];
-								console.log("testheader: ", testheader,'contents: ',element[testheader]);
+							{Object.keys(param_header).map(function(value, index) {
+								const local_header = param_header[value];
 								return(
-									<TableRowColumn key={index}>{element[testheader]}</TableRowColumn>
+									<TableRowColumn key={element['_id']}>{element[local_header]}</TableRowColumn>
 								)
 							})}
 						</TableRow>
@@ -46,19 +45,8 @@ class DataTable extends Component{
 
 	render(){
 		if(this.props.data){
-			// const data=this.props.data;
-			// const header=this.props.header;
-
-			// data.map(function(element) {
-			// 	Object.keys(header).map(function(value, index) {
-			// 		const testheader = header[value];
-			// 		console.log("testheader: ", testheader,'contents: ',element[testheader])
-			// 	});
-			// });
-
 			return(
 				<div className="container-fluid">
-					IT WORKS!!!
 					<Table>
 						{this.renderHeader(this.props.header)}
 						{this.renderBody(this.props.header,this.props.data)}
