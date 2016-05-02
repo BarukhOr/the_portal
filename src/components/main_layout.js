@@ -43,7 +43,7 @@ class MainLayout extends Component{
 					<LeftNav open={this.state.open} docked={false} onRequestChange={open => this.setState({open})}>
 						<AppBar title="Menu" style={{background: Colors.grey700}} onLeftIconButtonTouchTap={this.menuToggle.bind(this)} />
 						<br /> <br />
-						<Link to="/">
+						<Link to="/dash">
 							<Paper zDepth={1}>
 								<Card>
 									<CardTitle title="Home" style={{background: Colors.blue500}} />

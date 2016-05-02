@@ -24,7 +24,7 @@ ReactDOM.render(
     	<Route path="/" component={MainLayout}>
     		<Route path="signin" component={Signin} />
     		<Route path="dash" component={Dash} />
-    		<Route path="graphics" component={Graphics} />
+    		<Route path="graphics/pending" component={Graphics} />
     	</Route>
     </Router>
   </Provider>,document.getElementById('root')
