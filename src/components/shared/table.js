@@ -16,7 +16,7 @@ class DataTable extends Component{
 				<TableRow>
 					{Object.keys(headers).map(function(value,index){
 						return(
-							<TableHeaderColumn key={index}>{value}</TableHeaderColumn>
+							<TableHeaderColumn>{value}</TableHeaderColumn>
 						)
 					})}
 				</TableRow>
@@ -29,11 +29,11 @@ class DataTable extends Component{
 			<TableBody>
 				{data.map(function(element) {
 					return(
-						<TableRow>
+						<TableRow key={element['_id']}>
 							{Object.keys(param_header).map(function(value, index) {
 								const local_header = param_header[value];
 								return(
-									<TableRowColumn key={element['_id']}>{element[local_header]}</TableRowColumn>
+									<TableRowColumn>{element[local_header]}</TableRowColumn>
 								)
 							})}
 						</TableRow>
