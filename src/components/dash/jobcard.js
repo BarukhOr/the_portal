@@ -31,8 +31,8 @@ class JobCard extends Component{
 						</Paper>
 					</Link>
 					<CardActions>
-						<Link to={this.props.path+"/New"}><FlatButton label="Create Request" icon={<FontIcon className="material-icons">add</FontIcon>} /></Link>
-						<Link to={this.props.path}><FlatButton label="View Pending " icon={<FontIcon className="material-icons">list</FontIcon>} /></Link>
+						<Link to={this.props.path+"/new"}><FlatButton label="Create Request" icon={<FontIcon className="material-icons">add</FontIcon>} /></Link>
+						<Link to={this.props.path+"/review"}><FlatButton label="View Pending " icon={<FontIcon className="material-icons">list</FontIcon>} /></Link>
 					</CardActions>
 				</Card>
 			</div>
