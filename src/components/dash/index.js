@@ -22,7 +22,7 @@ class Dash extends Component{
 					<JobCard 
 						title="Graphics"
 						subtitle="Create and manage Graphics Requests"
-						path="/graphics/pending"
+						path="/graphics"
 						color={Colors.teal500}
 						height={30}
 					/>

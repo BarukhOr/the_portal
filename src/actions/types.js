@@ -13,3 +13,5 @@ export const GRAPHICS_COUNT_PRINT_ALL = 'graphics_count_print_all';
 export const GRAPHICS_COUNT_PRINT_PENDING = 'graphics_count_print_pending';
 export const GRAPHICS_COUNT_PRINT_INPROGRESS = 'graphics_count_print_inprogress';
 export const GRAPHICS_COUNT_PRINT_DENIED = 'graphics_count_print_denied';
+
+export const GRAPHICS_SUBMIT_REQUEST = 'graphics_submit_request';
